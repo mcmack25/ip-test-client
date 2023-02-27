@@ -1,24 +1,30 @@
 import { NgModule } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UserCreateComponent } from './user-create/user-create.component';
-import { UserDeleteComponent } from './user-delete/user-delete.component';
-import { UserEditComponent } from './user-edit/user-edit.component';
-import { UserListComponent } from './user-list/user-list.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { NotFoundPageComponent } from './error-pages/not-found-page.component';
+import { HttpErrorInterceptor } from './shared';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    UserListComponent,
-    UserCreateComponent,
-    UserEditComponent,
-    UserDeleteComponent,
+  declarations: [AppComponent, NotFoundPageComponent],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    AppRoutingModule,
+    HttpClientModule,
   ],
-  imports: [BrowserModule, AppRoutingModule, MatButtonModule],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

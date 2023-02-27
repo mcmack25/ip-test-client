@@ -1,0 +1,32 @@
+.register-card {
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.register-card .mdc-card {
+  max-width: 350px;
+}
+
+.register-card button {
+  margin: 0 auto 20px auto;
+}
+
+.form-group {
+  display: flex;
+  flex-flow: row wrap;
+}
+.form-group > * {
+  flex: 1 100%;
+}
+
+.form-group .form-subgroup {
+  display: flex;
+}
+
+.form-group .form-subgroup > * {
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 100%;
+}
